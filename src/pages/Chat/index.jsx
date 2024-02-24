@@ -12,6 +12,7 @@ const firebaseConfig = {
   appId: "1:917701251714:web:799399c64498f5eb9f5a9b"
 };
 
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
@@ -79,10 +80,6 @@ function Chat() {
     });
   };
 
-  const messageClass = (message) => {
-    return message.name === name ? 'sent' : 'received';
-  };
-
   const unreadMessagesCount = (chat) => {
     return messages.filter(message => message.name !== name && !message.read).length;
   };
@@ -90,16 +87,20 @@ function Chat() {
   return (
     <div className="app-container">
       <div className="sidebar">
-        <h2>VGTickets</h2>
-        <ul>
+        <div className="menu-header">
+          <div className="logo">VGTickets</div>
+          <div className="menu-actions">
+            <div className="action-icon">...</div>
+            <div className="action-icon">...</div>
+            <div className="action-icon">...</div>
+          </div>
+        </div>
+        <div className="menu-title">Conversas</div>
+        <ul className="chat-list">
           {chats.map((chat, index) => (
-            <li key={index}>
-              <button onClick={() => selectChat(chat)} className="chat-button">
-                <span>{chat}</span>
-                {unreadMessagesCount(chat) > 0 &&
-                  <span className="unread-messages">{unreadMessagesCount(chat)}</span>
-                }
-              </button>
+            <li key={index} className="chat-item" onClick={() => selectChat(chat)}>
+              <div className="chat-name">{chat}</div>
+              {unreadMessagesCount(chat) > 0 && <div className="chat-counter">{unreadMessagesCount(chat)}</div>}
             </li>
           ))}
         </ul>
@@ -113,7 +114,7 @@ function Chat() {
           {selectedChat ? (
             <div className="chat">
               {messages.map((message, index) => (
-                <div key={index} className={`message ${messageClass(message)}`}>
+                <div key={index} className={`message ${message.name === name ? '' : 'message-received'}`}>
                   <div className="message-bubble">
                     <p>{message.message}</p>
                     <p className="message-date">{message.date}</p>
@@ -147,4 +148,3 @@ function Chat() {
 }
 
 export default Chat;
-
