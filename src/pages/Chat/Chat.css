@@ -1,0 +1,136 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #1a202c;
+  color: #ffffff;
+  width: 250px;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.chat-button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.unread-messages {
+  background-color: #e53e3e;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px;
+  margin-left: 5px;
+}
+
+.main-content {
+  flex: 1;
+  background-color: #f3f4f6;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.chat-container {
+  height: calc(100% - 130px);
+  overflow-y: auto;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.message-sender {
+  font-size: 12px;
+  color: #718096;
+}
+
+.message-bubble {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 70%;
+}
+
+.sent .message-bubble {
+  background-color: #d1d5db;
+}
+
+.message-date {
+  font-size: 12px;
+  color: #a0aec0;
+  margin-top: 5px;
+}
+
+.no-chat-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.message-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-input input, .chat-input input {
+  border: 1px solid #cbd5e0;
+  border-radius: 5px;
+  padding: 10px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.name-input button, .chat-input button {
+  background-color: #4299e1;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.message-input button {
+  background-color: #4299e1;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, push, onValue } from 'firebase/database';
-import './App.css';
+import './Chat.css';
 
 const firebaseConfig = {
   apiKey: "AIzaSyABamgwXR0bk1sfaMfE15jqffTRMZO9JOo",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-function App() {
+function Chat() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [name, setName] = useState(localStorage.getItem('name') || '');
@@ -88,65 +88,56 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex">
-      {/* Barra lateral */}
-      <div className="bg-gray-900 w-64 px-4 py-6 flex flex-col">
-        <h2 className="text-white text-lg font-bold mb-4">VGTickets</h2>
-        <ul className="space-y-2">
+    <div className="app-container">
+      <div className="sidebar">
+        <h2>VGTickets</h2>
+        <ul>
           {chats.map((chat, index) => (
             <li key={index}>
-              <button onClick={() => selectChat(chat)} className="text-gray-200 flex items-center relative">
-                <span className="mr-2">{chat}</span>
+              <button onClick={() => selectChat(chat)} className="chat-button">
+                <span>{chat}</span>
                 {unreadMessagesCount(chat) > 0 &&
-                  <span className="bg-red-500 text-white text-xs py-1 px-2 rounded-full absolute -top-1 right-0">{unreadMessagesCount(chat)}</span>
+                  <span className="unread-messages">{unreadMessagesCount(chat)}</span>
                 }
               </button>
             </li>
           ))}
         </ul>
       </div>
-      {/* Conteúdo principal */}
-      <div className="flex-1 bg-gray-100 flex flex-col">
-        {/* Cabeçalho */}
-        <div className="bg-gray-800 px-6 py-3 flex justify-between items-center">
-          <h1 className="text-white text-lg font-bold">VGTickets</h1>
-          <button onClick={disconnect} className="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+      <div className="main-content">
+        <div className="header">
+          <h1>VGTickets</h1>
+          <button onClick={disconnect}>Sair</button>
         </div>
-        {/* Conteúdo do chat */}
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div className="chat-container">
           {selectedChat ? (
-            <div className="space-y-4">
+            <div className="chat">
               {messages.map((message, index) => (
                 <div key={index} className={`message ${messageClass(message)}`}>
-                  <div className="bg-white rounded-lg p-3 shadow-md">
-                    <p className="text-gray-800">{message.message}</p>
-                    <p className="text-xs text-gray-500 mt-1">{message.date}</p>
+                  <div className="message-bubble">
+                    <p>{message.message}</p>
+                    <p className="message-date">{message.date}</p>
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">{message.name}</p>
+                  <p className="message-sender">{message.name}</p>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center text-gray-500 mt-6">
+            <div className="no-chat-selected">
               <p>Selecione ou crie um chat para começar.</p>
             </div>
           )}
         </div>
-        {/* Campo de mensagem */}
-        <div className="bg-gray-200 px-6 py-4">
+        <div className="message-input">
           {!selectedChat ? (
-            <div className="flex items-center">
-              <input value={nameInput} onChange={(e) => setNameInput(e.target.value)} type="text" placeholder="Digite seu nome..." className="border-gray-400 border w-full py-2 px-3 rounded-lg mr-4" />
-              <button onClick={saveName} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Salvar</button>
+            <div className="name-input">
+              <input value={nameInput} onChange={(e) => setNameInput(e.target.value)} type="text" placeholder="Digite seu nome..." />
+              <button onClick={saveName}>Salvar</button>
             </div>
           ) : (
-            <div className="flex items-center">
-              <input value={message} onChange={(e) => setMessage(e.target.value)} onKeyUp={(e) => e.key === 'Enter' && sendMessage()} type="text" placeholder="Digite uma mensagem..." className="border-gray-400 border w-full py-2 px-3 rounded-lg mr-4" />
-              <button onClick={sendMessage} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Enviar</button>
+            <div className="chat-input">
+              <input value={message} onChange={(e) => setMessage(e.target.value)} onKeyUp={(e) => e.key === 'Enter' && sendMessage()} type="text" placeholder="Digite uma mensagem..." />
+              <button onClick={sendMessage}>Enviar</button>
             </div>
           )}
         </div>
@@ -155,5 +146,5 @@ function App() {
   );
 }
 
-export default App;
+export default Chat;
 
