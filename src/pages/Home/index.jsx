@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../images/vgofficialtickets-removebg-preview.png";
 import ImageContent from "../../images/undraw_futuristic_interface_re_0cm6.svg";
 import LoginModal from "../../components/LoginModal";
+import HamburgerMenu from "../../components/HamburgerMenu";
 
 function HomePage() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -17,6 +18,7 @@ function HomePage() {
   return (
     <>
       <header>
+        <HamburgerMenu onLoginClick={openLoginModal} />
         <div className="logo">
           <img src={Logo} alt="logo do sistema" />
         </div>
