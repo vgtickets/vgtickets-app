@@ -36,8 +36,8 @@ function HomePage() {
         </div>
         <div className="content">
           <h1>
-            O <span className="best">melhor</span> gerenciamento de <br />{" "}
-            tickets do mercado
+            O <span className="best">melhor</span> gerenciamento de tickets do
+            mercado
           </h1>
           <div className="buttons">
             <button className="lead-more">Saiba mais</button>
