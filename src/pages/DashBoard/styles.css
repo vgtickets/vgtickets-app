@@ -65,6 +65,10 @@
   transition: 0.3s;
 }
 
+.all {
+  display: flex;
+}
+
 .chat-dashboard:hover {
   border: 2px solid #00c3ff;
   cursor: pointer;
