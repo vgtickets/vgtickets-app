@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+import Logo from "../../images/vgofficialtickets-removebg-preview.png";
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue } from "firebase/database";
@@ -19,7 +21,7 @@ function Chat() {
     const unsubscribe = onValue(ref(db, "chats"), (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        setChats(Object.keys(data));
+        setChats(Object.entries(data));
       }
     });
 
@@ -53,13 +55,13 @@ function Chat() {
     }
   };
 
-  const selectChat = (chat) => {
-    setSelectedChat(chat);
-    loadMessages(chat);
+  const selectChat = (chatId, chatName) => {
+    setSelectedChat(chatId);
+    loadMessages(chatId);
   };
 
-  const loadMessages = (chat) => {
-    onValue(ref(db, `chats/${chat}/messages`), (snapshot) => {
+  const loadMessages = (chatId) => {
+    onValue(ref(db, `chats/${chatId}/messages`), (snapshot) => {
       const data = snapshot.val();
       if (data) {
         setMessages(Object.values(data));
@@ -71,7 +73,7 @@ function Chat() {
     });
   };
 
-  const unreadMessagesCount = (chat) => {
+  const unreadMessagesCount = (chatId) => {
     return messages.filter((message) => message.name !== name && !message.read)
       .length;
   };
@@ -80,24 +82,22 @@ function Chat() {
     <div className="app-container">
       <div className="sidebar">
         <div className="menu-header">
-          <div className="logo-chat">VGTickets</div>
+          <img src={Logo} className="logo-chat" />
           <div className="menu-actions">
-            <div className="action-icon">...</div>
-            <div className="action-icon">...</div>
-            <div className="action-icon">...</div>
+            {/* Remove o ícone de anexo */}
           </div>
         </div>
         <div className="menu-title">Conversas</div>
         <ul className="chat-list">
-          {chats.map((chat, index) => (
+          {chats.map(([chatId, chatData], index) => (
             <li
               key={index}
               className="chat-item"
-              onClick={() => selectChat(chat)}
+              onClick={() => selectChat(chatId, chatData.name)}
             >
-              <div className="chat-name">{chat}</div>
-              {unreadMessagesCount(chat) > 0 && (
-                <div className="chat-counter">{unreadMessagesCount(chat)}</div>
+              <div className="chat-name">{chatData.name}</div>
+              {unreadMessagesCount(chatId) > 0 && (
+                <div className="chat-counter">{unreadMessagesCount(chatId)}</div>
               )}
             </li>
           ))}
@@ -114,9 +114,7 @@ function Chat() {
               {messages.map((message, index) => (
                 <div
                   key={index}
-                  className={`message ${
-                    message.name === name ? "" : "message-received"
-                  }`}
+                  className={`message ${message.name === name ? 'sent' : 'received'}`}
                 >
                   <div className="message-bubble">
                     <p>{message.message}</p>

@@ -11,7 +11,7 @@ body {
     rgba(255, 255, 255, 0) 0%,
     rgba(0, 0, 0, 0.8) 100%
   );
-  background-color: #040e20;
+  background-color: #090909;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 
@@ -187,6 +187,22 @@ li:hover {
 }
 
 .modal {
+  position: relative;
+  color: #fff;
+  width: 400px;
+  height: 400px;
+  background: rgba(25, 25, 25, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(9.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-create {
   position: relative;
   color: #fff;
   width: 400px;
@@ -438,4 +454,10 @@ input[type="password"]:focus {
 }
 .menu__item:hover {
   background-color: #cfd8dc;
+}
+
+
+ .content-component{
+  width: 80%;
+  background-color: #0e0f0f;
 }

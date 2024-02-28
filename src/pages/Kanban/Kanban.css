@@ -1,26 +1,58 @@
-/* Kanban.css */
+
 .kanban-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   align-items: flex-start;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .kanban-header {
+  padding: 1rem;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  width: 30rem;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .kanban-header button {
+  color: #fff;
+  background-color: #00c3ff ;
+  height: 38px;
+  width: 200px;
   margin-right: 10px;
+}
+
+.kanban-header input{
+  padding: 8px;
+  color: #fff;
+  background-color: #151515;
+  height: 40px;
+  width: 500px;
 }
 
 .kanban-columns {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
 }
 
+
 .column {
-  border: 1px solid #ccc;
+  color: #fff;
+  border-radius: 8px;
+  height: 70vh;
+  background: rgba(0, 0, 0, 0.506);
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba(84, 88, 92, 0.18);
   margin-right: 10px;
   padding: 10px;
   width: 250px;
@@ -31,7 +63,9 @@
 }
 
 .card {
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: grab;
+  border: 1px solid #00c3ff;
   margin-bottom: 5px;
   padding: 10px;
   position: relative;
@@ -45,38 +79,116 @@
   color: #aaa;
 }
 
-.modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-create {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.836);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
 }
 
-.modal-content {
-  background-color: #fefefe;
+.modal-overlay-create {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.719);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
+  margin: auto;
+}
+
+.modal-create {
+  color: #fff;
+  width: 100%;
+  height: 100vh;
+  background: rgba(25, 25, 25, 0.05); 
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(59.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content{
+  color: #fff;
+  width: 500px;
+  height: 500px;
+  background: rgba(25, 25, 25, 0.05); 
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(59.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content input{
+  color: #fff;
+  background-color: #2f3131;
+  padding: 8px;
+  border-radius: 8px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-content textarea{
+  max-width: 350px;
+  max-height: 150px;
+  min-width: 350px;
+  min-height: 150px;
+  color: #fff;
+  background-color: #2f3131;
+  padding: 8px;
+  border-radius: 8px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .close {
+  cursor: pointer;
   color: #aaa;
   align-self: flex-end;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
+.tags{
+  margin-left: 15px;
+}
+
+.btn-create-task button{
   cursor: pointer;
+  background-color: #040e20;
+  height: 40px;
+  margin-top: 50px;
+  color: #00c3ff;
+  width: 150px;
+}
+
+.logo-close{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+
+.logo-close img{
+  width: 140px;
 }

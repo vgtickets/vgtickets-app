@@ -1,27 +1,17 @@
 /* Chat.css */
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
 .app-container {
   display: flex;
   height: 100vh;
 }
 
+/* Sidebar styles */
 .sidebar {
-  background-color: #040e20;
+  background-color: #636e72; /* Altera a cor de fundo da barra lateral */
   color: #fff;
   padding: 20px;
   width: 300px;
   overflow-y: auto;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
 }
 
 .menu-header {
@@ -31,9 +21,14 @@ body {
   margin-bottom: 20px;
 }
 
+.logo-chat {
+  width: 180px;
+}
+
 .menu-title {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px; /* Espaçamento abaixo do título do menu */
 }
 
 .menu-actions {
@@ -51,23 +46,22 @@ body {
 }
 
 .chat-item {
-  display: flex;
-  align-items: center;
   padding: 10px;
   cursor: pointer;
+  border-bottom: 1px solid #95a5a6; /* Adiciona uma borda inferior a cada item do chat */
 }
 
 .chat-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #95a5a6; /* Altera a cor de fundo ao passar o mouse sobre o item do chat */
 }
 
 .chat-name {
-  margin-left: 10px;
   font-weight: bold;
+  margin-bottom: 5px; /* Espaçamento abaixo do nome do chat */
 }
 
 .chat-counter {
-  background-color: #00c3ff;
+  background-color: #e74c3c; /* Altera a cor de fundo do contador de mensagens não lidas */
   color: #fff;
   border-radius: 50%;
   width: 20px;
@@ -76,9 +70,9 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  margin-left: auto;
 }
 
+/* Main content styles */
 .main-content {
   flex: 1;
   display: flex;
@@ -86,7 +80,7 @@ body {
 }
 
 .header {
-  background-color: #040e20;
+  background-color: #636e72; /* Altera a cor de fundo do cabeçalho */
   color: #fff;
   padding: 10px 20px;
   display: flex;
@@ -98,7 +92,7 @@ body {
   margin: 0;
 }
 
-.header-button {
+.header button {
   background-color: transparent;
   color: #fff;
   border: none;
@@ -115,23 +109,25 @@ body {
 .chat {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Alinha as mensagens à esquerda */
 }
 
 .message {
   max-width: 70%;
-  margin-bottom: 20px;
-  align-self: flex-end;
-}
-
-.message-received {
-  align-self: flex-start;
-}
-
-.message-bubble {
-  background-color: #00c3ff;
-  color: #fff;
+  margin-bottom: 10px; /* Espaçamento entre as mensagens */
   padding: 10px;
   border-radius: 10px;
+}
+
+.sent {
+  align-self: flex-end; /* Alinha as mensagens enviadas à direita */
+  background-color: #3498db; /* Altera a cor de fundo das mensagens enviadas */
+  color: #fff;
+}
+
+.received {
+  align-self: flex-start; /* Alinha as mensagens recebidas à esquerda */
+  background-color: #95a5a6; /* Altera a cor de fundo das mensagens recebidas */
 }
 
 .message-sender {
@@ -152,31 +148,23 @@ body {
 }
 
 .message-input {
-  background: rgba(25, 25, 25, 0);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(9.5px);
-  -webkit-backdrop-filter: blur(9.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Altera a cor de fundo do campo de entrada de mensagem */
   padding: 15px;
+  border-top: 1px solid #bdc3c7; /* Adiciona uma borda superior ao campo de entrada de mensagem */
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.name-input input,
 .chat-input input {
   padding: 10px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid #bdc3c7; /* Altera a cor da borda do campo de entrada de mensagem */
   outline: none;
   flex-grow: 1;
 }
 
-.name-input button,
 .chat-input button {
-  background-color: #00c3ff;
+  background-color: #3498db; /* Altera a cor de fundo do botão de enviar */
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -185,22 +173,6 @@ body {
   margin-left: 10px;
 }
 
-.name-input button:hover,
 .chat-input button:hover {
-  background-color: #007acc;
-}
-
-.message-input button {
-  background-color: #00c3ff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-left: 10px;
-  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.message-input button:hover {
-  background-color: #007acc;
+  background-color: #2980b9; /* Altera a cor de fundo do botão de enviar ao passar o mouse sobre ele */
 }

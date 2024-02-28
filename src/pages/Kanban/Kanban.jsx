@@ -3,6 +3,9 @@ import { getDatabase, ref, set, push, remove, onValue } from 'firebase/database'
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../../plugins/firebase';
 import './Kanban.css';
+import { AiOutlineClose } from 'react-icons/ai';
+import Logo from "../../images/vgofficialtickets-removebg-preview.png";
+
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -28,15 +31,21 @@ const AddCardModal = ({ show, onClose, onSubmit }) => {
 
   return (
     show &&
-    <div className="modal">
+    <div className="modal-overlay-create">
+    <div className="modal-create">
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
+        <div className="logo-close">
+          <img src={Logo} alt="logo do sistema" />
+           <span className="close" onClick={onClose}><AiOutlineClose /></span>
+        </div>
+        <div className="title">
         <input
           type="text"
           placeholder="Title"
           value={newCardTitle}
           onChange={(e) => setNewCardTitle(e.target.value)}
-        />
+        /> 
+        </div>
         <textarea
           placeholder="Description"
           value={newCardDescription}
@@ -48,15 +57,18 @@ const AddCardModal = ({ show, onClose, onSubmit }) => {
           value={newCardAssign}
           onChange={(e) => setNewCardAssign(e.target.value)}
         />
-        <input
+        <input className='tags'
           type="text"
           placeholder="Tags"
           value={newCardTags}
           onChange={(e) => setNewCardTags(e.target.value)}
         />
-        <button onClick={handleAddCard}>Add Card</button>
+        <div className="btn-create-task">
+          <button onClick={handleAddCard}>Criar atividade</button>
+        </div>
       </div>
     </div>
+  </div>
   );
 };
 
@@ -77,7 +89,7 @@ const EditCardModal = ({ show, onClose, onSubmit, cardData }) => {
 
   return (
     show &&
-    <div className="modal">
+    <div className="modal-create">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <input
@@ -159,17 +171,20 @@ const Kanban = () => {
   };
 
   return (
-    <div className="kanban-container">
-      <div className="kanban-header">
-        <button onClick={() => setShowAddModal(true)}>Add Card</button>
+  <>
+ 
+  <div className="kanban-header">
+        <button onClick={() => setShowAddModal(true)}>Nova Atividade</button>
         <input
           type="text"
-          placeholder="Enter column title"
+          placeholder="Nome da nova coluna"
           value={newColumnTitle}
           onChange={(e) => setNewColumnTitle(e.target.value)}
         />
-        <button onClick={handleAddColumn}>Add Column</button>
+        <button className="btn-column" onClick={handleAddColumn}>Nova Coluna</button>
       </div>
+    <div className="kanban-container">
+      
       <div className="kanban-columns">
         {Object.keys(columns).map((columnId) => (
           <Column
@@ -195,7 +210,7 @@ const Kanban = () => {
         onSubmit={handleEditCard}
         cardData={editCardData || {}}
       />
-    </div>
+    </div> </>
   );
 };
 
